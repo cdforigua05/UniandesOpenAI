@@ -15,7 +15,8 @@ var audioElementSource = document.getElementsByClassName("audio-element")[0]
 var textIndicatorOfAudiPlaying = document.getElementsByClassName("text-indication-of-audio-playing")[0];
 var transcriptionContainer = document.getElementsByClassName("transcription-container")[0];
 var transcriptionText =  document.getElementsByClassName("transcription-text")[0];
-var containerCards = document.getElementsByClassName("container-cards")[0];
+var containerCards = document.getElementsByClassName("container-cards-recipes")[0];
+var containerCardsRestaurants = document.getElementsByClassName("container-cards-restaurants")[0];
 
 //Listeners
 
@@ -43,42 +44,114 @@ function handleHidingTranscription(){
     transcriptionContainer.classList.add("hide")
 }
 
-function create_template(){
-    console.log("Entró")
-    template = '<section id="gallery">\n'+ 
+function create_templates_recipes(lista_recipes){
+
+    var img1 = lista_recipes[0]["image"]
+    var name1 = lista_recipes[0]["title"]
+    var short_description1 = `<ul><li>Preparation time: ${lista_recipes[0]["readyInMinutes"]} mins</li>
+                                <li>Servings: ${lista_recipes[0]["servings"]}</li></ul>`
+    var url1 = lista_recipes[0]["sourceUrl"]
+
+    var img2 = lista_recipes[1]["image"]
+    var name2 = lista_recipes[1]["title"]
+    var short_description2 = `<ul><li>Preparation time: ${lista_recipes[1]["readyInMinutes"]} mins</li>
+                                <li>Servings: ${lista_recipes[1]["servings"]}</li></ul>`
+    var url2 = lista_recipes[1]["sourceUrl"]
+
+    var img3 = lista_recipes[2]["image"]
+    var name3 = lista_recipes[2]["title"]
+    var short_description3 = `<ul><li>Preparation time: ${lista_recipes[2]["readyInMinutes"]} mins</li>
+                                <li>Servings: ${lista_recipes[2]["servings"]}</li></ul>`
+    var url3 = lista_recipes[2]["sourceUrl"]
+    template_recipes =  '<h2 class="title">Recipes</h2>\n'+
+                '<section id="gallery">\n'+ 
                 '<div class="container">\n'+
                 '<div class="row">\n'+
                 '<div class="col-lg-4 mb-4">\n'+
                 '<div class="card">\n'+
-                '<img src="https://images.unsplash.com/photo-1477862096227-3a1bb3b08330?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60" alt="" class="card-img-top">\n'+
+                `<img src="images/logo2.png">\n`+
                 '<div class="card-body">\n'+
-                '<h5 class="card-title">Sunset</h5>\n'+
-                '<p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a laborum, rerum voluptates ipsam eos quo tempore iusto dolore modi dolorum in pariatur. Incidunt repellendus praesentium quae!</p>\n'+
+                `<h5 class="card-title">${name1}</h5>\n`+
+                `<p class="card-text">${short_description1}</p>\n`+
+                `<a href=${url1} class="btn btn-primary">See cooking recipe</a>\n`+
                 '</div>\n'+
                 '</div>\n'+
                 '</div>\n'+
                 '<div class="col-lg-4 mb-4">\n'+
                 '<div class="card">\n'+
-                '<img src="https://images.unsplash.com/photo-1477862096227-3a1bb3b08330?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60" alt="" class="card-img-top">\n'+
+                `<img src="images/logo2.png">\n`+
                 '<div class="card-body">\n'+
-                '<h5 class="card-title">Sunset</h5>\n'+
-                '<p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a laborum, rerum voluptates ipsam eos quo tempore iusto dolore modi dolorum in pariatur. Incidunt repellendus praesentium quae!</p>\n'+
+                `<h5 class="card-title">${name2}</h5>\n`+
+                `<p class="card-text">${short_description2}</p>\n`+
+                `<a href=${url2} class="btn btn-primary">See cooking recipe</a>\n`+
                 '</div>\n'+
                 '</div>\n'+
                 '</div>\n'+
                 '<div class="col-lg-4 mb-4">\n'+
                 '<div class="card">\n'+
-                '<img src="https://images.unsplash.com/photo-1477862096227-3a1bb3b08330?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60" alt="" class="card-img-top">\n'+
+                `<img src="images/logo2.png">\n`+
                 '<div class="card-body">\n'+
-                '<h5 class="card-title">Sunset</h5>\n'+
-                '<p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a laborum, rerum voluptates ipsam eos quo tempore iusto dolore modi dolorum in pariatur. Incidunt repellendus praesentium quae!</p>\n'+
+                `<h5 class="card-title">${name3}</h5>\n`+
+                `<p class="card-text">${short_description3}</p>\n`+
+                `<a href=${url3} class="btn btn-primary">See cooking recipe</a>\n`+
                 '</div>\n'+
                 '</div>\n'+
                 '</div>\n'+
                 '</div>\n'+
                 '</div>\n'+
                 '</section>\n'
-    containerCards.innerHTML = template
+    containerCards.innerHTML = template_recipes
+}
+
+function create_templates_stores(lista_restaurants){
+    var name1 = lista_restaurants[0]["title"]
+    var img1 = lista_restaurants[0]["image"]
+    var short_description1 = `<ul><li>Restaurant: ${lista_restaurants[0]["restaurantChain"]}</li>
+                                <li>Serving size: ${lista_restaurants[0]["servingSize"]} / ${lista_restaurants[0]["readableServingSize"]}</li></ul>`
+    var name2 = lista_restaurants[1]["title"]
+    var img2 = lista_restaurants[1]["image"]
+    var short_description2 = `<ul><li>Restaurant: ${lista_restaurants[1]["restaurantChain"]}</li>
+                                <li>Serving size: ${lista_restaurants[1]["servingSize"]} / ${lista_restaurants[1]["readableServingSize"]}</li></ul>`
+    var name3 = lista_restaurants[2]["title"]
+    var img3 = lista_restaurants[2]["image"]
+    var short_description3 = `<ul><li>Restaurant: ${lista_restaurants[2]["restaurantChain"]}</li>
+                                <li>Serving size: ${lista_restaurants[2]["servingSize"]} / ${lista_restaurants[2]["readableServingSize"]}</li></ul>`
+    template_restaurantes =  '<h2 class="title"> Restaurants </h2>\n'+
+    '<section id="gallery">\n'+ 
+    '<div class="container">\n'+
+    '<div class="row">\n'+
+    '<div class="col-lg-4 mb-4">\n'+
+    '<div class="card">\n'+
+    `<img src=${img1}>\n`+
+    '<div class="card-body">\n'+
+    `<h5 class="card-title">${name1}</h5>\n`+
+    `<p class="card-text">${short_description1}</p>\n`+
+    '</div>\n'+
+    '</div>\n'+
+    '</div>\n'+
+    '<div class="col-lg-4 mb-4">\n'+
+    '<div class="card">\n'+
+    `<img src=${img2}>\n`+
+    '<div class="card-body">\n'+
+    `<h5 class="card-title">${name2}</h5>\n`+
+    `<p class="card-text">${short_description2}</p>\n`+
+    '</div>\n'+
+    '</div>\n'+
+    '</div>\n'+
+    '<div class="col-lg-4 mb-4">\n'+
+    '<div class="card">\n'+
+    `<img src=${img3}>\n`+
+    '<div class="card-body">\n'+
+    `<h5 class="card-title">${name3}</h5>\n`+
+    `<p class="card-text">${short_description3}</p>\n`+
+    '</div>\n'+
+    '</div>\n'+
+    '</div>\n'+
+    '</div>\n'+
+    '</div>\n'+
+    '</section>\n'
+    console.log(template_restaurantes)
+    containerCardsRestaurants.innerHTML =  template_restaurantes
 }
 
 /** Displays recording control buttons */
@@ -153,7 +226,6 @@ var elapsedTimeTimer;
 function startAudioRecording() {
 
     console.log("Recording Audio...");
-
     //If a previous audio recording is playing, pause it
     let recorderAudioIsPlaying = !audioElement.paused; // the paused property tells whether the media element is paused or not
     console.log("paused?", !recorderAudioIsPlaying);
@@ -214,7 +286,8 @@ function startAudioRecording() {
 /** Stop the currently started audio recording & sends it
  */
 function stopAudioRecording() {
-
+    containerCardsRestaurants.innerHTML = ""
+    containerCards.innerHTML = ""
     console.log("Stopping Audio Recording...");
 
     //stop the recording using the audio recording API
@@ -248,7 +321,6 @@ function cancelAudioRecording() {
 
     //hide recording control button & return record icon
     handleHidingRecordingControlButtons();
-    create_template()
 }
 
 function saveAs(content, fileName) {
@@ -304,7 +376,18 @@ async function processAudio(recorderAudioAsBlob){
           }).then(function (response) {
               console.log(response);
               handleDisplayTranscription(response["transcript"], response["summary"])
-              create_template()
+              if (response["recipes"]==="No recipes were found as requested"){
+                containerCards.innerHTML= `<h2 class="title">Recipes</h2><p class="transcription-text"> Sorry :(, we did not find any recepies. Try again! </p>`
+              }else{
+                create_templates_recipes(response["recipes"])
+              }
+              console.log(response["stores"]==="No dishes were found for purchase as requested")
+              if (response["stores"]==="No dishes were found for purchase as requested"){
+                console.log("Entró adentro")
+                containerCardsRestaurants.innerHTML = `<h2 class="title">Stores</h2> <p class="transcription-text"> Sorry :(, we did not find any dishes. Try again! </p>`
+              }else{
+                create_templates_stores(response["stores"])
+              }
           });
       })
       .catch(error => console.log('error', error));
