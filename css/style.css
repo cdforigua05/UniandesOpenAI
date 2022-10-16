@@ -27,6 +27,11 @@
         text-align: center;
         font-family: 'Century Gothic';
     }
+    .container-cards{
+        width: 100%;
+        height: auto;
+        margin: 25px;
+    }
     .audio-recording-container {
         width: 100%;
         height: 50vh;

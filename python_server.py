@@ -11,7 +11,7 @@ import gpt3
 import openai
 
 # GPT-3 API Key
-openai.api_key = "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"
+openai.api_key = "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"
 
 # Check if NVIDIA GPU is available
 torch.cuda.is_available()

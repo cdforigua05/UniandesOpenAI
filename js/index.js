@@ -15,6 +15,7 @@ var audioElementSource = document.getElementsByClassName("audio-element")[0]
 var textIndicatorOfAudiPlaying = document.getElementsByClassName("text-indication-of-audio-playing")[0];
 var transcriptionContainer = document.getElementsByClassName("transcription-container")[0];
 var transcriptionText =  document.getElementsByClassName("transcription-text")[0];
+var containerCards = document.getElementsByClassName("container-cards")[0];
 
 //Listeners
 
@@ -40,6 +41,44 @@ function handleDisplayTranscription(transcription, summary){
 
 function handleHidingTranscription(){
     transcriptionContainer.classList.add("hide")
+}
+
+function create_template(){
+    console.log("Entró")
+    template = '<section id="gallery">\n'+ 
+                '<div class="container">\n'+
+                '<div class="row">\n'+
+                '<div class="col-lg-4 mb-4">\n'+
+                '<div class="card">\n'+
+                '<img src="https://images.unsplash.com/photo-1477862096227-3a1bb3b08330?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60" alt="" class="card-img-top">\n'+
+                '<div class="card-body">\n'+
+                '<h5 class="card-title">Sunset</h5>\n'+
+                '<p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a laborum, rerum voluptates ipsam eos quo tempore iusto dolore modi dolorum in pariatur. Incidunt repellendus praesentium quae!</p>\n'+
+                '</div>\n'+
+                '</div>\n'+
+                '</div>\n'+
+                '<div class="col-lg-4 mb-4">\n'+
+                '<div class="card">\n'+
+                '<img src="https://images.unsplash.com/photo-1477862096227-3a1bb3b08330?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60" alt="" class="card-img-top">\n'+
+                '<div class="card-body">\n'+
+                '<h5 class="card-title">Sunset</h5>\n'+
+                '<p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a laborum, rerum voluptates ipsam eos quo tempore iusto dolore modi dolorum in pariatur. Incidunt repellendus praesentium quae!</p>\n'+
+                '</div>\n'+
+                '</div>\n'+
+                '</div>\n'+
+                '<div class="col-lg-4 mb-4">\n'+
+                '<div class="card">\n'+
+                '<img src="https://images.unsplash.com/photo-1477862096227-3a1bb3b08330?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60" alt="" class="card-img-top">\n'+
+                '<div class="card-body">\n'+
+                '<h5 class="card-title">Sunset</h5>\n'+
+                '<p class="card-text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut eum similique repellat a laborum, rerum voluptates ipsam eos quo tempore iusto dolore modi dolorum in pariatur. Incidunt repellendus praesentium quae!</p>\n'+
+                '</div>\n'+
+                '</div>\n'+
+                '</div>\n'+
+                '</div>\n'+
+                '</div>\n'+
+                '</section>\n'
+    containerCards.innerHTML = template
 }
 
 /** Displays recording control buttons */
@@ -209,6 +248,7 @@ function cancelAudioRecording() {
 
     //hide recording control button & return record icon
     handleHidingRecordingControlButtons();
+    create_template()
 }
 
 function saveAs(content, fileName) {
@@ -264,6 +304,7 @@ async function processAudio(recorderAudioAsBlob){
           }).then(function (response) {
               console.log(response);
               handleDisplayTranscription(response["transcript"], response["summary"])
+              create_template()
           });
       })
       .catch(error => console.log('error', error));
